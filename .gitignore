@@ -2,3 +2,4 @@ env/
 *.pyc
 WorldWideEnzyme/migrations/
 *.swp
+WorldWideEnzyme/settings.py
