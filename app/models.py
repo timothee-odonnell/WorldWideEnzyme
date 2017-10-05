@@ -37,4 +37,20 @@ class Synonym(models.Model):
     label = models.CharField(max_length=256)
 
     def __str__(self):
-        return "EC " + self.enzyme.label + " : " + label
+        return "EC " + self.enzyme.label + " : " + self.label
+
+class Article(models.Model):
+    enzyme = models.ForeignKey(Enzyme)
+    title = models.TextField()
+    year = models.IntegerField(null=True)
+    volume = models.CharField(null=True,max_length=16)
+    first_page = models.CharField(null=True,max_length=16)
+    last_page = models.CharField(null=True,max_length=16)
+    editorial = models.CharField(null=True,max_length=128)
+    edition = models.CharField(null=True,max_length=128)
+    editor = models.CharField(null=True,max_length=128)
+    pubmed = models.IntegerField(null=True)
+    medline = models.IntegerField(null=True)
+
+    def __str__(self):
+        return self.title

@@ -5,4 +5,6 @@ from app.models import *
 admin.site.register(Enzyme)
 admin.site.register(Prosite)
 admin.site.register(Swissprot)
+admin.site.register(Synonym)
+admin.site.register(Article)
 
