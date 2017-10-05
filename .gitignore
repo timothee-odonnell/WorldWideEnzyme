@@ -1,5 +1,5 @@
 env/
 *.pyc
-WorldWideEnzyme/migrations/
+app/migrations/
 *.swp
 WorldWideEnzyme/settings.py
