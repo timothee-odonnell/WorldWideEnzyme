@@ -6,8 +6,8 @@ import xml.etree.ElementTree as ET
 from app.models import *
 import re
 
-# TODO : extract cofactor
-# TODO : extract <note> from tranfered or deleted
+# Editorial place is an attrib of <editorial>.
+# Since the place of Academic Press is always New York, I didn't write the code to extract place's information
 def parse_intenz():
     f = open('intenz_modified.txt')
     for line in f:
@@ -18,7 +18,14 @@ def parse_intenz():
             s_name = obj.find('systematic_name').text
             enz = Enzyme.objects.create(label=ID,accepted_name=a_name,systematic_name=s_name)
         except Exception as e:
-            enz = Enzyme.objects.create(label=ID,is_deleted=True)
+            tmp = obj.find('deleted')
+            if not tmp:
+                tmp = obj.find('transferred')
+            try:
+                note = tmp.find('note').text
+            except:
+                note = ''
+            enz = Enzyme.objects.create(label=ID,is_deleted=True,note = note)
         try:
             history = obj.find('history').text
             enz.history = history

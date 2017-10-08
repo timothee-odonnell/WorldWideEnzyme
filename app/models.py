@@ -5,6 +5,7 @@ class Enzyme(models.Model):
     accepted_name = models.CharField(null=True,max_length=256)
     systematic_name = models.CharField(null=True,max_length=256)
     is_deleted = models.BooleanField(default=False)
+    note = models.TextField(null=True)
     activity = models.TextField(null=True)
     comment = models.TextField(null = True)
     disease = models.TextField(null = True)
