@@ -19,13 +19,15 @@ def parse_intenz():
             enz = Enzyme.objects.create(label=ID,accepted_name=a_name,systematic_name=s_name)
         except Exception as e:
             tmp = obj.find('deleted')
+            status='D'
             if not tmp:
                 tmp = obj.find('transferred')
+                status='T'
             try:
                 note = tmp.find('note').text
             except:
                 note = ''
-            enz = Enzyme.objects.create(label=ID,is_deleted=True,note = note)
+            enz = Enzyme.objects.create(label=ID,status=status,note = note)
         try:
             history = obj.find('history').text
             enz.history = history
@@ -51,6 +53,37 @@ def parse_intenz():
             print(e)
             print(enz)
             break
+
+def parse_db_enzyme():
+    pattern = r"<EC>EC (?P<label>.*)</EC>\t<S_NAME>(?P<accepted_name>.*)\.</S_NAME>\t<O_NAME>(?P<other_name>.*)</O_NAME>\t<ACTIVITY>(?P<activity>.*)</ACTIVITY>\t<COFACTORS>(?P<cofactors>.*)</COFACTORS>\t<COMMENTS>(?P<comment>.*)</COMMENTS>\t<DISEASE>(?P<disease>.*)</DISEASE>\t<PROSITE>(?P<prosites>.*)</PROSITE>\t<SWISSPROT>(?P<swissprots>.*)</SWISSPROT>"
+    f = open('db_enzyme.txt')
+    for line in f:
+        obj = re.match(pattern,line[:-1])
+        dic = obj.groupdict()
+        try:
+            ec = Enzyme.objects.get(label=dic['label'])
+        except:
+            Enzyme.objects.create(label=dic['label'],status='D')
+            continue
+        if not ec.status == 'E':
+            continue
+        ec.activity = dic['activity']
+        ec.save()
+        if dic['accepted_name']:
+            ec.check_or_add(dic['accepted_name'])
+        if dic['other_name']:
+            ec.check_or_add(dic['other_name'])
+        for p in dic['prosites'].split(';'):
+            if p:
+                Prosite.objects.create(enzyme=ec,label=p)
+        for s in dic['swissprots'].split(';'):
+            if s:
+                lst = s.split(',')
+                Swissprot.objects.create(enzyme=ec,label=lst[0],name=lst[1])
+
+        for c in dic['cofactors'][:-1].replace(' or',';').split('; '):
+            if c:
+                Cofactor.objects.create(enzyme=ec,cofactor=c.title())
 
 def modify_intenz():
     """
@@ -89,4 +122,5 @@ def modify_intenz():
 
 if __name__ == '__main__':
     parse_intenz()
+    parse_db_enzyme()
     #modify_intenz()
