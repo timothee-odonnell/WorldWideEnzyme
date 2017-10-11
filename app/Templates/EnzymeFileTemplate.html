@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Enzyme {ECNumber}</title>
+</head>
+<body>
+
+<h1>{ECNumber} : {EnzymeName}</h1>
+
+<p>Synonyms:<br>
+{% for name in synonymlist %}
+	{{ name }}<br>
+{% endfor %}
+</p>
+
+<p>Reactions:<br>
+{% for reaction in reactionslist %}
+	{{ reaction }}<br>
+{% endfor %}
+</p>
+
+<p>Cofactors:<br>
+{% for cofactor in cofactorlist %}
+	{{ cofactor }}<br>
+{% endfor %}
+</p>
+
+<p>Swissprot Links:<br>
+{% for page in swissprotpagelist %}
+	{{ page }}<br>
+{% endfor %}
+</p>
+
+<p>Prosite Links:<br>
+{% for page in prositepagelist %}
+	{{ page }}<br>
+{% endfor %}
+</p>
+
+</body>
+</html> 
