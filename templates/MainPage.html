@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>EnzymeSearch</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title_block %}EnzymeSearch{% endblock%}
+{% block body_block %}
 <h1>
 World wide Enzyme
 </h1>
@@ -12,4 +9,4 @@ World wide Enzyme
     <input id="Enzyme_name" type="text" name="name_field">
     <input type="submit" value="OK">
 </form>
-</body>
+{% endblock %}
