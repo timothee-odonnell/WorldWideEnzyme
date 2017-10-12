@@ -2,7 +2,7 @@ from django.db import models
 
 class Enzyme(models.Model):
     STATUS = {('D','Deleted'),('T','Transferred'),('E','Existed')}
-    label = models.CharField(max_length=20)
+    label = models.CharField(max_length=20,primary_key=True)
     accepted_name = models.CharField(null=True,max_length=256)
     systematic_name = models.CharField(null=True,max_length=256)
     status = models.CharField(max_length=1,choices=STATUS,default='E')

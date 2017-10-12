@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
-{% block title_block %}Enzyme {ECNumber}{% endblock %}
+{% block title_block %}EC {{ec.label}}{% endblock %}
 {% block body_block %}
-<h1>{ECNumber} : {EnzymeName}</h1>
+<h1>EC {{ec.label}} : {{ec.accepted_name}}</h1>
 
+<p>Activity:</p>
+{{ec.activity}}
+
+<p>Comment:</p>
+{{ec.comment}}
+
+<p>History</p>
+{{ec.history}}</p>
 <p>Synonyms:<br>
 {% for name in synonymlist %}
 	{{ name }}<br>
@@ -28,8 +36,8 @@
 </p>
 
 <p>Prosite Links:<br>
-{% for page in prositepagelist %}
-	{{ page }}<br>
+{% for prosite in ec.prosite_set.all|dictsort:"label" %}
+  <a href='https://prosite.expasy.org/{{prosite.label}}'>{{prosite.label}}</a>
 {% endfor %}
 </p>
 {% endblock %}
