@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load app_tags %}
 {% block title_block %}EC {{ec.label}}{% endblock %}
 {% block body_block %}
 <h1>EC {{ec.label}} : {{ec.accepted_name}}</h1>
@@ -7,10 +8,10 @@
 {{ec.activity}}
 
 <p>Comment:</p>
-{{ec.comment}}
+{{ec.comment |ec |safe}}
 
 <p>History</p>
-{{ec.history}}</p>
+{{ec.history |ec |safe}}</p>
 <p>Synonyms:<br>
 {% for name in synonymlist %}
 	{{ name }}<br>
