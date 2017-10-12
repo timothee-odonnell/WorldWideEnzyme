@@ -44,7 +44,7 @@ class Cofactor(models.Model):
 
 class Synonym(models.Model):
     enzyme = models.ForeignKey(Enzyme)
-    label = models.CharField(max_length=256)
+    label = models.TextField()
 
     def __str__(self):
         return "EC " + self.enzyme.label + " : " + self.label

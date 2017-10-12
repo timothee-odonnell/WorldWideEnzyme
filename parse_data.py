@@ -67,19 +67,21 @@ def parse_db_enzyme():
             continue
         if not ec.status == 'E':
             continue
+        print(ec)
         ec.activity = dic['activity']
         ec.save()
         if dic['accepted_name']:
             ec.check_or_add(dic['accepted_name'])
-        if dic['other_name']:
-            ec.check_or_add(dic['other_name'])
+        for o in dic['other_name'].split('.'):
+            if o:
+                ec.check_or_add(dic['other_name'])
         for p in dic['prosites'].split(';'):
             if p:
                 Prosite.objects.create(enzyme=ec,label=p)
-        for s in dic['swissprots'].split(';'):
-            if s:
-                lst = s.split(',')
-                Swissprot.objects.create(enzyme=ec,label=lst[0],name=lst[1])
+        #for s in dic['swissprots'].split(';'):
+        #    if s:
+        #        lst = s.split(',')
+        #        Swissprot.objects.create(enzyme=ec,label=lst[0],name=lst[1])
 
         for c in dic['cofactors'][:-1].replace(' or',';').split('; '):
             if c:
