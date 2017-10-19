@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load app_tags %}
+{% block title_block %}Cofactors{% endblock %}
+{% block body_block %}
+<ul>
+  {% for cof in cofs %}
+  <li><a href="{% url 'cofactors_page' cof.cofactor%}">{{cof.cofactor}}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
