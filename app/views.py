@@ -4,7 +4,7 @@ from app.models import *
 # Create your views here.
 
 def main(request):
-    return render(request, 'MainPage.html','')
+    return render(request, 'MainPage.html',{})
 
 def enzyme_page(request,label):
     try:
