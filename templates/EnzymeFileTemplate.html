@@ -14,10 +14,15 @@
 {{ec.history |ec |safe}}</p>
 <p>Synonyms:<br>
 {% for name in ec.synonym_set.all|slice:":5" %}
+	{{ name.label }},  
+{% endfor %}
+<a href="#" id="show_syn" > ...show all</a>
+<span id="syn" style="display:none">
+{% for name in ec.synonym_set.all|slice:"5:"%}
 	{{ name.label }}, 
 {% endfor %}
-<a href="#">more</a> 
-<a href="#">all</a>
+<span id="hide_syn" >hide</span>
+</span>
 </p>
 
 <p>Cofactors:<br>
@@ -41,17 +46,27 @@
 <p>Articles<br/>
 <ul>
 {% for article in ec.article_set.all %}
-<li>
+<li {% if article.medline %} title="Medline : {{article.medline}}"{% endif %}>
+  {% if article.pubmed %}
+    <a href="https://www.ncbi.nlm.nih.gov/pubmed/{{article.pubmed}}">
+  {% endif %}
   {{article.title}} 
   {{article.year}}, vol. {{article.volume}}, p{{article.first_page}} - {{article.last_page}}
   {% if article.pubmed %}
-  <a href="{{article.pubmed}}">pubmed</a>
-  {% endif %}
-  {% if article.medline %}
-  <a href="{{article.medline}}">medline</a>
+    </a>
   {% endif %}
 </li>
 {% endfor %}
 </ul>
 </p>
+<script>
+$("#show_syn").click(function() {
+  $(this).hide();
+  $("#syn").show();
+});
+$("#hide_syn").click(function() {
+  $("#syn").hide();
+  $("#show_syn").show();
+});
+</script>
 {% endblock %}
