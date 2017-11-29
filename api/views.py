@@ -12,19 +12,19 @@ def api_root(request, format=None):
         'articles': reverse('article-list', request=request, format=format)
     })
 
-class EnzymeList(generics.ListCreateAPIView):
+class EnzymeList(generics.ListAPIView):
     queryset = Enzyme.objects.all()
     serializer_class = EnzymeSerializer
 
-class EnzymeDetail(generics.RetrieveUpdateDestroyAPIView):
+class EnzymeDetail(generics.RetrieveAPIView):
     lookup_field = "label"
     queryset = Enzyme.objects.all()
     serializer_class = EnzymeSerializer
 
-class ArticleList(generics.ListCreateAPIView):
+class ArticleList(generics.ListAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
 
-class ArticleDetail(generics.RetrieveUpdateDestroyAPIView):
+class ArticleDetail(generics.RetrieveAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
