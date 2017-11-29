@@ -13,20 +13,21 @@
 <p>History</p>
 {{ec.history |ec |safe}}</p>
 <p>Synonyms:<br>
-{% for name in synonymlist %}
-	{{ name }}<br>
+{% for name in ec.synonym_set.all|slice:":5" %}
+	{{ name.label }},  
 {% endfor %}
-</p>
-
-<p>Reactions:<br>
-{% for reaction in reactionslist %}
-	{{ reaction }}<br>
+<a href="#" id="show_syn" > ...show all</a>
+<span id="syn" style="display:none">
+{% for name in ec.synonym_set.all|slice:"5:"%}
+	{{ name.label }}, 
 {% endfor %}
+<span id="hide_syn" >hide</span>
+</span>
 </p>
 
 <p>Cofactors:<br>
-{% for cofactor in cofactorlist %}
-	{{ cofactor }}<br>
+{% for cofactor in ec.cofactor_set.all %}
+  <a href="#">{{ cofactor.cofactor }}</a> 
 {% endfor %}
 </p>
 
@@ -41,4 +42,31 @@
   <a href='https://prosite.expasy.org/{{prosite.label}}'>{{prosite.label}}</a>
 {% endfor %}
 </p>
+
+<p>Articles<br/>
+<ul>
+{% for article in ec.article_set.all %}
+<li {% if article.medline %} title="Medline : {{article.medline}}"{% endif %}>
+  {% if article.pubmed %}
+    <a href="https://www.ncbi.nlm.nih.gov/pubmed/{{article.pubmed}}">
+  {% endif %}
+  {{article.title}} 
+  {{article.year}}, vol. {{article.volume}}, p{{article.first_page}} - {{article.last_page}}
+  {% if article.pubmed %}
+    </a>
+  {% endif %}
+</li>
+{% endfor %}
+</ul>
+</p>
+<script>
+$("#show_syn").click(function() {
+  $(this).hide();
+  $("#syn").show();
+});
+$("#hide_syn").click(function() {
+  $("#syn").hide();
+  $("#show_syn").show();
+});
+</script>
 {% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load app_tags %}
+{% block title_block %}Cofactor: {{cof}}{% endblock %}
+{% block body_block %}
+<ul>
+  {% for ec in ecs %}
+  <li>{{ec.enzyme}}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
