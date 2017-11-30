@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Enzyme(models.Model):
     STATUS = {('D','Deleted'),('T','Transferred'),('E','Existed')}
@@ -19,6 +20,9 @@ class Enzyme(models.Model):
         assert name
         if (self.accepted_name != name) and (self.systematic_name != name):
             self.synonym_set.get_or_create(label=name)
+
+    def get_absolute_url(self):
+        return reverse('enzyme_page',args=[self.label])
 
 class Prosite(models.Model):
     enzyme = models.ForeignKey(Enzyme)

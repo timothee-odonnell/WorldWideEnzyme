@@ -3,3 +3,4 @@ env/
 app/migrations/
 *.swp
 WorldWideEnzyme/settings.py
+WorldWideEnzyme/whoosh_index/
