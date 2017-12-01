@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load highlight %}
+{% load app_tags %}
 
 {% block body_block %}
  <h2>Search</h2>
@@ -18,11 +19,10 @@
  {% if query %}
  <h3>Results</h3>
 
- {% for result in page.object_list %}
- <p>
- <a href="{{ result.object.get_absolute_url }}">{{ result.object.label }}</a>
- </p>
- {% highlight result.rendered with query css_class "highlight" | safe %}
+  {% for result in page.object_list %}
+    {% with result|search_include as fragment %}
+    {% include fragment %}
+    {% endwith %}
  {% empty %}
  <p>No results found.</p>
  {% endfor %}
