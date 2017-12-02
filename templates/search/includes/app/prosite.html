@@ -1,0 +1,8 @@
+{% load highlight %}
+<div>
+<b>Prosite</b>
+{% with result.object as prosite %}
+  {{prosite.label}}
+  (<a href="{{ prosite.enzyme.get_absolute_url }}">{{ prosite.enzyme.label }}</a>)
+{% endwith %}
+</div>
