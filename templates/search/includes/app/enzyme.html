@@ -1,5 +1,5 @@
 {% load highlight %}
-<b>Enzyme</b>
+<span class="label label-success">Enzyme</span>
  <a href="{{ result.object.get_absolute_url }}">{{ result.object.label }}</a>
  <p>
  {% highlight result.rendered with query css_class "highlight" | safe %}

@@ -1,5 +1,5 @@
 {% load highlight %}
-<b>Article</b>
+<span class="label label-info">Article</span>
 {% with result.object as article %}
   {% if article.pubmed %}
     <a href="https://www.ncbi.nlm.nih.gov/pubmed/{{article.pubmed}}">

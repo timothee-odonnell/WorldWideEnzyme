@@ -2,6 +2,7 @@
 {% load highlight %}
 {% load app_tags %}
 
+{% block title_block %} Search {% if query %}: {{query}}{% endif %}{% endblock %}
 {% block body_block %}
  <h2>Search</h2>
 
@@ -23,6 +24,7 @@
     {% with result|search_include as fragment %}
     {% include fragment %}
     {% endwith %}
+    <hr/>
  {% empty %}
  <p>No results found.</p>
  {% endfor %}
