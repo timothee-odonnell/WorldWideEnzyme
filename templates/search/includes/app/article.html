@@ -1,0 +1,13 @@
+{% load highlight %}
+<span class="label label-info">Article</span>
+{% with result.object as article %}
+  {% if article.pubmed %}
+    <a href="https://www.ncbi.nlm.nih.gov/pubmed/{{article.pubmed}}">
+  {% endif %}
+  {{article.title}}
+  {% if article.pubmed %}
+    </a>
+  {% endif %}
+  (<a href="{{ article.enzyme.get_absolute_url }}">{{ article.enzyme.label }}</a>)
+  <p>{{article.year}}, vol. {{article.volume}}, p{{article.first_page}} - {{article.last_page}}</p>
+{% endwith %}

@@ -1,0 +1,11 @@
+{{object.label}}
+{{object.label}}
+{{object.label}}
+{{object.label}}
+{{object.label}}
+{{object.accepted_name}}
+{{object.systematic_name}}
+{{object.note}}
+{{object.activity}}
+{{object.history}}
+{{object.comment | safe}}
