@@ -1,12 +1,23 @@
 {% extends 'base.html' %}
 {% block title_block %}EnzymeSearch{% endblock%}
 {% block body_block %}
-<h1>
-World wide Enzyme
-</h1>
-<form action="/Enzyme_name_url/" method="post">
-    <label for="Enzyme_name">Enter name: </label>
-    <input id="Enzyme_name" type="text" name="name_field">
-    <input type="submit" value="OK">
+<center><h1 style="margin-top:200px">World wide Enzyme</h1></center>
+<br/>
+<form action="search/" method="get">
+  <div class="col-md-12">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..." name="q">
+      <span class="input-group-btn">
+	<button class="btn btn-default" type="submit">Go!</button>
+      </span>
+    </div>
+  </div>
+<br/>
+<br/>
+  <center>
+    {% for m in form.models %}
+      {{m}}
+    {% endfor %}
+  </center>
 </form>
 {% endblock %}
