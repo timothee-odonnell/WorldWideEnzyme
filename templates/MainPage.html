@@ -15,9 +15,30 @@
 <br/>
 <br/>
   <center>
+    <div id='show_models'>
+      <a href="#"> Show advanced option</a>
+    </div>
+    <div id='hidden_models'>
+      <div id='hide_models'>
+	<a href="#"> Hide advanced option</a>
+      </div>
+      <b> Search only : </b>
     {% for m in form.models %}
       {{m}}
     {% endfor %}
+    </div>
   </center>
 </form>
+
+<script>
+$("#hidden_models").hide();
+$("#show_models").click(function () {
+  $("#hidden_models").show();
+  $(this).hide();
+});
+$("#hide_models").click(function () {
+  $("#hidden_models").hide();
+  $("#show_models").show();
+})
+</script>
 {% endblock %}
