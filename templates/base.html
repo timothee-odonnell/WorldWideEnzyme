@@ -8,7 +8,9 @@
   <link rel="stylesheet" href="{% static "css/style.css" %}" type="text/css">
 
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
     <script src="{% static "js/functions.js" %}"></script>
 </head>
 <body>
@@ -43,7 +45,7 @@
 		    <span class="glyphicon glyphicon-user"></span> Contact us
 		    </div>
                         <span>Copyright &copy; 2017-2018 Tim & htyao</span>
-		    <div style="float:right">
+			<div style="float:right" onclick="open_bug_form()">
 		    <span class="glyphicon glyphicon-warning-sign"></span> Report bug
 		    </div>
                     </center>
