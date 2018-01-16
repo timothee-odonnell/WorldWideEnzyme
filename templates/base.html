@@ -5,7 +5,7 @@
     <title>{% block title_block %}{% endblock %}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <link rel="stylesheet" href="{% static "css/style.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "css/style.css" %}" type="text/css">
 
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -16,17 +16,34 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar" role="navigation">
         <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">HOME</a>
-            </div>
+          <ul class="nav navbar-nav navbar-right">
+	    {% block nav_home %}
+            <li class="navbar-header">
+	      <a class="navbar-brand" href="/" style="color:gray">
+		<span class="glyphicon glyphicon-home"></span>
+	      </a>
+            </li>
+	    {% endblock %}
+	    {% block nav_search %}
+	    <li>
+	    <form class="navbar-form" action='{% url "haystack_search" %}'>
+	      <input type="text" class="form-control" placeholder="Search" name="q">
+	    </form>
+	    </li>
+	    {% endblock %}
+	    <li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:gray">
+		<span class="glyphicon glyphicon-th-list"></span>
+	      </a>
+              <ul class = "dropdown-menu">
+                <li><a href="/settings">Settings</a></li>
+	      </ul>
+	    </li>
+	    </ul>
 	</div>
     </nav>
-    <br>
-    <br>
-    <br>
-    <br>
     <br>
     <!-- Page Content -->
     <div class="container">
