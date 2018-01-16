@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from haystack.forms import ModelSearchForm
 from app.models import *
+from utils import sendEmail
 
 # Create your views here.
 
@@ -27,3 +28,10 @@ def cofactors_page(request,cofactor):
         pass
     return_form = {'cof':cofactor,'ecs':ecs}
     return render(request, 'cofactorPage.html',return_form)
+
+def send_bug(request):
+    if request.method == 'POST':
+        data={k: v[0] if len(v) == 1 else v for k, v in request.POST.lists()}
+        sendEmail(txt='bugEmail.txt',html='bugEmail.html',data=data,
+                title='[Bug Report]'+data['subject'],to=['hua-ting.yao@u-psud.fr'])
+

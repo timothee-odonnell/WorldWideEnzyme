@@ -1,0 +1,4 @@
+A bug is reported
+From : {{email}}
+About : {{subject}}
+Content : {{content}}
