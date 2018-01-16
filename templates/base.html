@@ -18,10 +18,11 @@
     <!-- Navigation -->
     <nav class="navbar" role="navigation">
         <div class="container">
+	  {% block only_search %}{% endblock%}
           <ul class="nav navbar-nav navbar-right">
 	    {% block nav_home %}
-            <li class="navbar-header">
-	      <a class="navbar-brand" href="/" style="color:gray">
+            <li>
+	      <a href="/" style="color:gray">
 		<span class="glyphicon glyphicon-home"></span>
 	      </a>
             </li>

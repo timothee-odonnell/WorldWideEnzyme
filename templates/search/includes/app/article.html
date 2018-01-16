@@ -9,5 +9,5 @@
     </a>
   {% endif %}
   (<a href="{{ article.enzyme.get_absolute_url }}">{{ article.enzyme.label }}</a>)
-  <p>{{article.year}}, vol. {{article.volume}}, p{{article.first_page}} - {{article.last_page}}</p>
+  <p>{{article.authors}} {{article.year}}, vol. {{article.volume}}, p{{article.first_page}} - {{article.last_page}}</p>
 {% endwith %}
