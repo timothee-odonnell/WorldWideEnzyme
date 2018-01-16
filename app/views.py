@@ -1,10 +1,11 @@
 from django.shortcuts import render
+from haystack.forms import ModelSearchForm
 from app.models import *
 
 # Create your views here.
 
 def main(request):
-    return render(request, 'MainPage.html',{})
+    return render(request, 'MainPage.html',{'form':ModelSearchForm})
 
 def enzyme_page(request,label):
     try:
