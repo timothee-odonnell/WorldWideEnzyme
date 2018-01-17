@@ -7,4 +7,6 @@ urlpatterns = [
     url(r'^cofactors$',views.cofactors_list, name='cofactors_list'),       
     url(r'^cofactors/(?P<cofactor>.*)$',views.cofactors_page, name='cofactors_page'),       
     url(r'^sendbug$', views.send_bug, name='send_bug'),
+    url(r'^timeline$', views.timeline, name='timeline'),
+    url(r'^timeline/data$', views.timelineData, name='timelineData'),
 ]

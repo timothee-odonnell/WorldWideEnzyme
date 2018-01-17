@@ -68,3 +68,11 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+class TimelineEvent(models.Model):
+    enzyme = models.ForeignKey(Enzyme)
+    year = models.IntegerField()
+    content = models.CharField(max_length=128)
+
+    def __str__(self):
+        return "EC {} {}".format(self.enzyme.label, self.content)

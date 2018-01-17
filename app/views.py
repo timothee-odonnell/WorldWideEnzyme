@@ -1,5 +1,8 @@
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from haystack.forms import ModelSearchForm
+from django.core import serializers
+import json
 from app.models import *
 from utils import sendEmail
 
@@ -35,3 +38,15 @@ def send_bug(request):
         sendEmail(txt='bugEmail.txt',html='bugEmail.html',data=data,
                 title='[Bug Report]'+data['subject'],to=['hua-ting.yao@u-psud.fr'])
 
+def timeline(request):
+    return render(request, 'timeline.html',{})
+
+def timelineData(request):
+    if request.method == 'GET':
+        data = {}
+        # data['result'] = []
+        events = TimelineEvent.objects.order_by('?')[:100]
+        data['events'] = json.loads(serializers.serialize('json', events))
+        #data['events'] = events
+        return  HttpResponse(json.dumps(data), content_type="application/json")
+    return HttpResponseRedirect('/')
