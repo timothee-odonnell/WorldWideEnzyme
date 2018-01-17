@@ -1,6 +1,6 @@
 env/
 *.pyc
-app/migrations/
+*/migrations/
 *.swp
 WorldWideEnzyme/settings.py
 WorldWideEnzyme/whoosh_index/
