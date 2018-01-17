@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^enzymes/(?P<label>\d\.\d{1,2}\.\d{1,2}\.\w{1,3})$', views.EnzymeDetail.as_view(),name='enzyme-detail'),
     url(r'^articles/$', views.ArticleList.as_view(),name='article-list'),
     url(r'^articles/(?P<pk>[0-9]+)$', views.ArticleDetail.as_view(),name='article-detail'),
+    url(r'^events/$', views.EventList.as_view(),name='event-list'),
+    url(r'^events/(?P<pk>[0-9]+)$', views.EventDetail.as_view(),name='event-detail'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

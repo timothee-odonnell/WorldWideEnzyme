@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from app.models import Enzyme, Article
+from app.models import Enzyme, Article, TimelineEvent
 
 class ArticleSerializer(serializers.HyperlinkedModelSerializer):
     enzyme = serializers.HyperlinkedRelatedField(many=False,read_only=True,view_name='enzyme-detail',lookup_field='label')
@@ -13,3 +13,10 @@ class EnzymeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Enzyme
         fields = ('url','label','accepted_name','systematic_name','status','note','activity','comment','history','article_set')
+
+class EventSerializer(serializers.HyperlinkedModelSerializer):
+    enzyme = serializers.HyperlinkedRelatedField(many=False,read_only=True,view_name='enzyme-detail',lookup_field='label')
+    url = serializers.HyperlinkedIdentityField(view_name='event-detail',lookup_field='pk')
+    class Meta:
+        model = TimelineEvent
+        fields = ('url','enzyme','content','year')
